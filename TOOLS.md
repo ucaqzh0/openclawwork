@@ -24,12 +24,20 @@ Things like:
 ### SSH
 
 - home-server → 192.168.1.100, user: admin
+- young → SSH config alias for Young supercomputer login node
 
 ### TTS
 
 - Preferred voice: "Nova" (warm, slightly British)
 - Default speaker: Kitchen HomePod
 ```
+
+## Local Setup
+
+### SSH
+
+- `young` works via local `~/.ssh/config` and key-based login.
+- Quick non-interactive check: `ssh -o BatchMode=yes young 'hostname && whoami'`
 
 ## Why Separate?
 
