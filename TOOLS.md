@@ -37,7 +37,8 @@ Things like:
 ### SSH
 
 - `young` works via local `~/.ssh/config` and key-based login.
-- `archer2` / `young` / `young.ng` are available HPC targets (via SSH config aliases if configured).
+- `young` / `young.ng` are current active workflow targets.
+- `archer2` is managed separately by user for now (not included in current automation scope).
 - Quick non-interactive check: `ssh -o BatchMode=yes <host-alias> 'hostname && whoami'`
 
 ## Why Separate?
