@@ -37,7 +37,8 @@ Things like:
 ### SSH
 
 - `young` works via local `~/.ssh/config` and key-based login.
-- Quick non-interactive check: `ssh -o BatchMode=yes young 'hostname && whoami'`
+- `archer2` / `young` / `young.ng` are available HPC targets (via SSH config aliases if configured).
+- Quick non-interactive check: `ssh -o BatchMode=yes <host-alias> 'hostname && whoami'`
 
 ## Why Separate?
 
