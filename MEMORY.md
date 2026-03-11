@@ -20,3 +20,4 @@
 ## Working preferences
 - User prefers direct, efficient collaboration.
 - Keep outputs practical and execution-focused.
+- In workflow setup, if a structure/result already exists in `100_water`, prefer reuse and copy full run outputs instead of recomputing.
