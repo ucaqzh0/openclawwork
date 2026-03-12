@@ -11,7 +11,7 @@
   - job submission/monitoring
   - result parsing/post-processing
   - restart/recovery patterns
-- Step1 GO workflow is now documented for long-term reuse at `workflows/STEP1_GO_WORKFLOW.md` (workspace) and `thermol/tool/WORKFLOW_STEP1_GO.md` (cluster).
+- Base workflow name is `GO_1body` (formerly Step1 GO). It is documented for long-term reuse at `workflows/STEP1_GO_WORKFLOW.md` (workspace) and `thermol/tool/WORKFLOW_STEP1_GO.md` (cluster).
 ## Available compute resources
 - ARCHER2
 - Young
