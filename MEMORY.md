@@ -22,4 +22,7 @@
 - Keep outputs practical and execution-focused.
 - In workflow setup, if a structure/result already exists in `100_water`, prefer reuse instead of recomputing.
 - For completed GO cases, reuse minimal files (`CONTCAR`, `OUTCAR`, `OSZICAR`) and do not include them again in check packages.
-- On young-ng GO submissions, use 80 cores per group when requested.
+- Update and maintain reusable path registry in `thermol/tool/GO` (overwrite during setup, confirm-and-freeze after user approval).
+- For Step1 generation, must use user notebook logic and produce full reviewable `.ipynb` in task `tool/`.
+- Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
+- One-off per-task trigger rules are temporary and should not be promoted to permanent memory.

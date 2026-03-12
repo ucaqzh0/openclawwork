@@ -1,9 +1,9 @@
 # STEP1 Workflow (GO 单位点吸附) — 永久版
 
-更新时间：2026-03-12
+更新时间：2026-03-12（按用户修订）
 
 ## 目标
-用于反应前驱体阶段的 GO 单位点吸附计算（1_body），并支持 young-ng(Slurm) + young(SEG) 协同调度。
+用于反应前驱体阶段的 GO 单位点吸附计算（1_body），支持 young-ng（Slurm）与 young（SEG）单机或协同调度。
 
 ## 固定目录规范
 以任务名 `TASK` 为例：
@@ -11,57 +11,50 @@
 - `thermol/TASK/absorption/1_body/{GO,TEST,Frequency,Final}`
 - `thermol/TASK/absorption/2_body/{GO,TEST,Frequency,Final}`
 - `thermol/TASK/tool/`（任务专用 notebook / 脚本）
-- `thermol/tool/GO`（全局复用登记）
+- `thermol/tool/GO`（全局地址与复用登记）
 
-## 构建规则（单吸附）
-1. 先查重：`100_water` 已有结果优先复用，不重复计算。
-2. 位点固定：`hollow / top / bridge`。
-3. 位点选取遵循中心对齐章法（与单吸附构建.ipynb一致）。
-4. 新建结构先放 `1_body/GO`。
+## 1) 调用与地址登记（关键）
+每次调用后必须更新 `thermol/tool/GO`：
+- 复写本次任务涉及的源地址、目标地址、复用地址。
+- 在用户确认“可用/通过”后，再将这些地址标记为可复用地址，供后续直接调用。
+- 地址记录必须可追溯（任务名、分子/位点、来源路径）。
 
-## 复用规则（已跑完结构）
-仅复制以下三件：
+## 2) 构建规则（关键）
+- 必须使用用户提供的 notebook 逻辑（不自创简化版）。
+- 必须输出“完整 ipynb 文件”（非只写脚本片段），放在 `TASK/tool/`，用于人工审查生成逻辑。
+- 单吸附固定三个位点：`hollow / top / bridge`。
+- 新建结构先进入 `1_body/GO`。
+
+## 3) 复用规则（已跑完结构）
+仅复制最小三件：
 - `CONTCAR` -> 目标任务 `POSCAR`
 - `OUTCAR`
 - `OSZICAR`
 
-不搬运大体积冗余文件。需要深度追溯时回源目录查。
+不搬运大体积冗余文件；深度文件按需回源目录查。
 
-## check 导出规则
-check 包仅包含“新生成、待人工检查”的结构。
-已完成/已复用结构不再重复进入 check 包。
+## 4) 提交与调度
+- 任务必须拆成独立任务（按分子/位点拆分）以便灵活调度、取消、迁移。
+- 是否使用 young、young-ng、或联合使用：由用户每次任务前指定。
+- 联合使用时保持参数一致（INCAR/KPOINTS/POTCAR 与关键开关一致）。
 
-## 计算参数要点
-- 目前统一使用：`ISPIN = 2`（重要）
-- young-ng GO 提交可用 80/120 核策略
-- young(SEG)按任务要求可单任务 256 核
+## 5) check 导出规则
+- check 包仅包含“新生成、待检查”结构。
+- 已完成/已复用结构不重复进入 check。
 
-## 协同调度策略
-### 默认策略
-- young-ng 跑主线 GO
-- young 接手分流子任务（如 bridge 或指定位点）
+## 6) 通知
+- 支持后台监控与邮件通知到 `ucaqzh0@ucl.ac.uk`。
 
-### 本次验证策略（可复用模板）
-- 当 young-ng 的 hollow 完成、开始 top 时：取消 ng 当前批次，改为双机重分配。
-- 若 young 的排队+运行任务数 <= 3，优先投 young。
-- Slurm 侧重提时用 120 核模板。
-
-## 运行状态与通知
-- 统一记录 jobid
-- 后台监控 + 邮件通知到 `ucaqzh0@ucl.ac.uk`
+## 7) 重要边界
+- 某次任务的临时调度触发条件（例如“跑到 top 就取消”）属于**任务特例**，不写入永久规则。
+- 用户会在具体任务中单独下达这类策略。
 
 ## 执行清单（SOP）
 1. 创建任务目录骨架
-2. 生成任务内 tool notebook
-3. 扫描可复用结构并写入 `thermol/tool/GO`
+2. 使用用户 notebook 生成完整任务级 ipynb
+3. 扫描复用项并复写 `thermol/tool/GO` 地址
 4. 新结构建模（3 位点）
 5. 导出 check 包（仅新建）
-6. 按机器策略提交
-7. 监控并在触发条件下切换调度
-8. 完成后归档 Final
-
----
-如果后续你确认，我们可以把它拆成自动化脚本：
-- `build_step1.py`
-- `dispatch_dual_cluster.py`
-- `monitor_and_rebalance.sh`
+6. 按用户指定机器策略提交（独立任务）
+7. 监控与通知
+8. 用户确认后更新 `thermol/tool/GO` 为可复用地址
