@@ -25,4 +25,5 @@
 - Update and maintain reusable path registry in `thermol/tool/GO` (overwrite during setup, confirm-and-freeze after user approval).
 - For Step1 generation, must use user notebook logic and produce full reviewable `.ipynb` in task `tool/`.
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
+- On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
