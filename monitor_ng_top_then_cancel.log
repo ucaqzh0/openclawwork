@@ -1,0 +1,7 @@
+[2026年 3月12日 星期四 01时15分22秒 GMT] monitor started: wait until any NG TOP starts, then scancel 3351 3352 3353
+[2026年 3月12日 星期四 11时42分52秒 GMT] detected TOP started at /home/ucaqzh0/thermol/precursor_generation/absorption/1_body/GO/absorption_single_CHO/job_POSCAR_CHO_top
+             JOBID                 NAME      STATE       TIME
+              3353               GO_CHO COMPLETING   13:38:37
+              3352              GO_COOH COMPLETING   13:58:59
+              3351                GO_CO COMPLETING   13:59:49
+[2026年 3月12日 星期四 11时42分55秒 GMT] canceled NG GO jobs

@@ -1,10 +1,10 @@
-# GR_MAIN — Global Optimization Runflow
+# GR_main — Global Optimization Runflow
 
 更新时间：2026-03-13
 
 ## 定位
 `GR` 是用于 Global Optimization 类型计算的统一运行主流程。
-`GO_HybridDrain` 作为 GR 中的双机调度策略组件。
+`GO_HybridDrain` 已并入 `GR_main`，作为其内置双机调度机制（不再作为独立 main）。
 
 ## 适用范围
 - 面向可拆分的批任务（如 GO_1body 的多构型并行）
@@ -25,7 +25,7 @@
   - 用户后续新增的任意服务器
 - 对于无法查询的服务器，明确输出：`N/A`。
 
-## 调度算法（GO_HybridDrain）
+## 内置双机调度机制（原 GO_HybridDrain）
 - 默认方案（用户未给特殊安排时）：优先提交到 young.ng，且每任务使用 3 nodes。
 1. 读取 young.ng 当前空闲节点数
 2. 按 `floor(idle_nodes / 3)` 计算 ng 可接收任务数
@@ -48,5 +48,5 @@
 
 ## 与 GO_1body 的关系
 - GO_1body 定义“如何构建结构”
-- GR_MAIN 定义“如何批量运行计算”
+- GR_main 定义“如何批量运行计算（含双机调度）”
 - 两者解耦：构建逻辑可变，调度主流程稳定复用
