@@ -34,14 +34,10 @@
    - 按“同物种内最低能”规则筛选 best
    - `GO_best` 与 `GO` 处于同一级目录
    - `GO_best` 目录结构固定为：
-     - `GO_best/1_body/primary`
-     - `GO_best/1_body/final`
-     - `GO_best/2_body/primary`
-     - `GO_best/2_body/final`
-   - 结构文件统一输出到对应层级（.vasp）
-  - 语义定义：
-    - `primary`：完成初步扫描后确认的结构
-    - `final`：完成全部 TEST + ZPE 后最终确认的完整结构
+     - `GO_best/1_body`
+     - `GO_best/2_body`
+   - 结构文件统一输出到对应结构目录（.vasp）
+   - 不再区分 `primary/final` 子层级
 
 4. **复用最小包生成**
    - 每个可复用 case 仅保留：`CONTCAR / OUTCAR / OSZICAR`
