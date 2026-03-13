@@ -26,4 +26,5 @@
 - For Step1 generation, must use user notebook logic and produce full reviewable `.ipynb` in task `tool/`.
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
+- Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
