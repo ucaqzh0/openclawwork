@@ -30,4 +30,6 @@
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
+- Before each submission, first report available compute capacity for young, young.ng, and any newly added servers; if a server cannot be queried, explicitly report `N/A`.
+- Default deployment plan (unless user gives special arrangement): prioritize young.ng with 3 nodes per job.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
