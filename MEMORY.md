@@ -30,6 +30,7 @@
 - Frequency calculations must use the user-confirmed INCAR baseline (ISTART=1, ENCUT=450, EDIFF=1E-7, EDIFFG=-0.01, NSW=1, IBRION=5, POTIM=0.01, NFREE=2, NWRITE=3, ISPIN=1, plus existing shared settings).
 - For frequency runs, always verify substrate constraints before submission: the slab base atoms must be fixed (current system: Cu substrate; check/selective dynamics flags are correct).
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
+- For this workflow family, submission-side compute allocation should default to GO_Run-style dispatch scripts when applicable; only skip if user explicitly says this run does not need it.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
 - Before each submission, first report available compute capacity for young, young.ng, and any newly added servers; if a server cannot be queried, explicitly report `N/A`.
