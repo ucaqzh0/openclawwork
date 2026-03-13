@@ -28,7 +28,6 @@
 - For GO_1body, the single-adsorption notebook logic is the **mainstream baseline** for 1_body construction; ASE is only a **debug patch path** to fix construction bugs within that mainstream, not a replacement workflow.
 - Adsorption height is task-scoped: ask user each task; if user does not specify, default to 2.0 Å.
 - Frequency calculations must use the user-confirmed INCAR baseline (ISTART=1, ENCUT=450, EDIFF=1E-7, EDIFFG=-0.01, NSW=1, IBRION=5, POTIM=0.01, NFREE=2, NWRITE=3, ISPIN=1, plus existing shared settings).
-- For frequency runs, always verify substrate constraints before submission: the slab base atoms must be fixed (current system: Cu substrate; check/selective dynamics flags are correct).
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - For this workflow family, submission-side compute allocation should default to GO_Run-style dispatch scripts when applicable; only skip if user explicitly says this run does not need it.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
@@ -36,8 +35,6 @@
 - Before each submission, first report available compute capacity for young, young.ng, and any newly added servers; if a server cannot be queried, explicitly report `N/A`.
 - After capacity report (dispatch step2), must pause and wait for user's explicit go-ahead + any special-case overrides; do not auto-submit without confirmation.
 - Default deployment plan (unless user gives special arrangement): prioritize young.ng with 3 nodes per job.
-- Frequency step5 is fully automatic once entered: run/monitor/summarize without extra user prompts, and send Chinese result summary email to `ucaqzh0@ucl.ac.uk` including success count, failure count, and final failed imaginary frequencies.
-- In frequency step5, process per-structure incrementally: as each structure finishes, check immediately (do not wait all done); for HAS_IMAG/INCOMPLETE, auto-run correction/resubmission per plan without additional user approval.
 - Communication patch: if memory_search returns empty, explicitly state this is a retrieval miss and answer from current persisted files/execution facts with concrete file references.
 - Workflow precedence: always execute by standardized files under `workflows/` first; only use other chains when no applicable workflow exists there.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
