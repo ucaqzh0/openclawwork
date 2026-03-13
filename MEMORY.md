@@ -27,10 +27,13 @@
 - For GO_1body, details of the "manual review" step are task-specific: user will provide exact manual-review requirements at the start of each task.
 - For GO_1body, the single-adsorption notebook logic is the **mainstream baseline** for 1_body construction; ASE is only a **debug patch path** to fix construction bugs within that mainstream, not a replacement workflow.
 - Adsorption height is task-scoped: ask user each task; if user does not specify, default to 2.0 Å.
+- Frequency calculations must use the user-confirmed INCAR baseline (ISTART=1, ENCUT=450, EDIFF=1E-7, EDIFFG=-0.01, NSW=1, IBRION=5, POTIM=0.01, NFREE=2, NWRITE=3, ISPIN=1, plus existing shared settings).
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
 - Before each submission, first report available compute capacity for young, young.ng, and any newly added servers; if a server cannot be queried, explicitly report `N/A`.
+- After capacity report (dispatch step2), must pause and wait for user's explicit go-ahead + any special-case overrides; do not auto-submit without confirmation.
 - Default deployment plan (unless user gives special arrangement): prioritize young.ng with 3 nodes per job.
+- Frequency step5 is fully automatic once entered: run/monitor/summarize without extra user prompts, and send Chinese result summary email to `ucaqzh0@ucl.ac.uk` including success count, failure count, and final failed imaginary frequencies.
 - Communication patch: if memory_search returns empty, explicitly state this is a retrieval miss and answer from current persisted files/execution facts with concrete file references.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
