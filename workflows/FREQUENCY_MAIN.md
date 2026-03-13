@@ -20,9 +20,13 @@
 ## Step 1 — 提取结构并执行频率计算
 
 ### 1.1 输入来源
-- 从 `GO_best` 的 `final` 层读取结构：
-  - `GO_best/1_body/final`
-  - `GO_best/2_body/final`
+- 本步骤直接从 `GO_best` 的 `primary` 提取结构作为频率输入来源。
+- 频率任务总目录与 `GO_best` 平级。
+- 总目录下固定三类子目录：
+  - `1_body`
+  - `2_body`
+  - `transition`
+- 每个子目录直接放入对应结构文件（无需再嵌套 primary/final）。
 
 ### 1.2 执行基准
 - 必须按 `tool/frequency.ipynb` 的逻辑执行（主线基准）。
