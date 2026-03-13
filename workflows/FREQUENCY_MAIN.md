@@ -26,7 +26,8 @@
   - `1_body`
   - `2_body`
   - `transition`
-- 每个子目录直接放入对应结构文件（无需再嵌套 primary/final）。
+- 每个子目录直接放入对应结构的 ZPE 计算文件夹（每结构一个文件夹）。
+- 文件夹命名与 `GO_best` 中对应 best 结构名称保持一致。
 
 ### 1.2 执行基准
 - 必须按 `tool/frequency.ipynb` 的逻辑执行（主线基准）。
