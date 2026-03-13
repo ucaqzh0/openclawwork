@@ -38,4 +38,5 @@
 - Frequency step5 is fully automatic once entered: run/monitor/summarize without extra user prompts, and send Chinese result summary email to `ucaqzh0@ucl.ac.uk` including success count, failure count, and final failed imaginary frequencies.
 - In frequency step5, process per-structure incrementally: as each structure finishes, check immediately (do not wait all done); for HAS_IMAG/INCOMPLETE, auto-run correction/resubmission per plan without additional user approval.
 - Communication patch: if memory_search returns empty, explicitly state this is a retrieval miss and answer from current persisted files/execution facts with concrete file references.
+- Workflow precedence: always execute by standardized files under `workflows/` first; only use other chains when no applicable workflow exists there.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
