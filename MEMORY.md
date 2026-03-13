@@ -26,6 +26,7 @@
 - For Step1 generation, must use user notebook logic and produce full reviewable `.ipynb` in task `tool/`.
 - For GO_1body, details of the "manual review" step are task-specific: user will provide exact manual-review requirements at the start of each task.
 - For GO_1body, the single-adsorption notebook logic is the **mainstream baseline** for 1_body construction; ASE is only a **debug patch path** to fix construction bugs within that mainstream, not a replacement workflow.
+- Adsorption height is task-scoped: ask user each task; if user does not specify, default to 2.0 Å.
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
