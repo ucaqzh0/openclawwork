@@ -28,6 +28,7 @@
 - For GO_1body, the single-adsorption notebook logic is the **mainstream baseline** for 1_body construction; ASE is only a **debug patch path** to fix construction bugs within that mainstream, not a replacement workflow.
 - Adsorption height is task-scoped: ask user each task; if user does not specify, default to 2.0 Å.
 - Frequency calculations must use the user-confirmed INCAR baseline (ISTART=1, ENCUT=450, EDIFF=1E-7, EDIFFG=-0.01, NSW=1, IBRION=5, POTIM=0.01, NFREE=2, NWRITE=3, ISPIN=1, plus existing shared settings).
+- For frequency runs, always verify substrate constraints before submission: the slab base atoms must be fixed (current system: Cu substrate; check/selective dynamics flags are correct).
 - Task scheduling may be young / young-ng / combined depending on user instruction; jobs should be split into independent units for flexible dispatch.
 - On young.ng, requested core counts should use multiples of 40 (matching node CPU topology).
 - Batch strategy name confirmed: `GO_HybridDrain` (双机调度): fill young.ng first, spill remainder to young, then migrate one pending young job to young.ng per each completed young.ng job.
