@@ -35,5 +35,6 @@
 - After capacity report (dispatch step2), must pause and wait for user's explicit go-ahead + any special-case overrides; do not auto-submit without confirmation.
 - Default deployment plan (unless user gives special arrangement): prioritize young.ng with 3 nodes per job.
 - Frequency step5 is fully automatic once entered: run/monitor/summarize without extra user prompts, and send Chinese result summary email to `ucaqzh0@ucl.ac.uk` including success count, failure count, and final failed imaginary frequencies.
+- In frequency step5, process per-structure incrementally: as each structure finishes, check immediately (do not wait all done); for HAS_IMAG/INCOMPLETE, auto-run correction/resubmission per plan without additional user approval.
 - Communication patch: if memory_search returns empty, explicitly state this is a retrieval miss and answer from current persisted files/execution facts with concrete file references.
 - One-off per-task trigger rules are temporary and should not be promoted to permanent memory.
