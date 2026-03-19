@@ -1,8 +1,29 @@
 # tool_01 文档建立（build 最基本结构）
 
-该 tool 只负责把“build 阶段产物”应该落在哪些目录、这些目录里需要什么文件、命名如何对应 `@absorption` 中的 `1_body/2_body` 架构，写成可执行/可交接的文档。
+该 tool 负责两件事：
+- 定义并说明 `@absorption` 的标准目录接口；
+- 提供 `auto` 入口，在你指定的母目录下自动建立 `absorption` 目录结构。
+
+`tool_01_文档建立/absorption` 目录本身仅作为 **example 模板**，用于展示格式，不作为唯一物理落点。
 
 build 阶段不涉及 NEB（不导出 `ini/fin`、不生成 `nebmake.pl` 输入）。
+
+---
+
+## 0) auto 入口（按母目录动态创建）
+
+入口 notebook：`auto/build_absorption_example.ipynb`
+
+你只需要改一个参数：
+- `parent_root`：母目录（例如 `/home/ucaqzh0/thermol/100_water`）
+
+运行后会自动创建：
+
+```text
+<parent_root>/absorption/
+  1_body/{GO,TEST,Frequency,Final}
+  2_body/{GO,TEST,Frequency,Final}
+```
 
 ---
 
