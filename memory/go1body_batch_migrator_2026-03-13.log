@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/zhenzezhao/.openclaw/workspace/memory/go1body_batch_migrator_2026-03-13.py", line 36, in <module>
-    rows=load(); changed=False; freed=0
-  File "/Users/zhenzezhao/.openclaw/workspace/memory/go1body_batch_migrator_2026-03-13.py", line 29, in load
-    with open(track) as f: return list(csv.DictReader(f, delimiter='	'))
-         ~~~~^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/zhenzezhao/.openclaw/workspace/memory/go1body_batch_dispatch_2026-03-13.tsv'
