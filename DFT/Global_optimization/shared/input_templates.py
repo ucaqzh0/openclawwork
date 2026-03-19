@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+"""GO 输入文件模板（参考 GO_SEG.py / GO_SLURM.py）"""
+
+INCAR_TEMPLATE = """ISTART = 1
+
+ENCUT = 450
+PREC = ACCURATE
+LREAL = .FALSE.
+ISMEAR = 1
+SIGMA  = 0.2
+GGA    = PE
+NELM   = 120
+NELMIN = 8
+NELMDL = -5
+EDIFF  = 1E-5
+EDIFFG = -0.01
+NSW    = 800
+ISIF   = 2
+IBRION = 2
+POTIM  = 0.015
+
+LWAVE  = .FALSE.
+LCHARG = .FALSE.
+
+ISPIN = 2
+LORBIT = 11
+IVDW = 12
+IDIPOL = 3
+LDIPOL = .TRUE.
+NCORE = 8
+ISYM = 0
+IALGO = 48
+"""
+
+KPOINTS_TEMPLATE = """Automatic mesh
+0
+Gamma
+4 4 1
+0 0 0
+"""
