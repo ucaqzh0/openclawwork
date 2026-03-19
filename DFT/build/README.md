@@ -8,6 +8,7 @@
 
 后续：
 - `Global_optimization` 或你已有的 `GO_SEG.py / GO_SLURM.py` 负责把这些结构进一步变成可提交的 VASP 输入（POSCAR/POTCAR/KPOINTS/INCAR 等）。
+- `tool_04` 负责把 `1_body/Final` 与 `2_body/Final` 汇总到 `thermol/Cu_100_absorption`，并输出地址清单用于复用索引。
 
 接口对接请统一按：`接口规范.md`
 
